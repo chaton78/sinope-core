@@ -150,7 +150,7 @@ public abstract class SinopeDataRequest extends SinopeRequest {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#getFrameData()
      */
     @Override
@@ -177,7 +177,7 @@ public abstract class SinopeDataRequest extends SinopeRequest {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#toString()
      */
     @Override
@@ -200,7 +200,7 @@ public abstract class SinopeDataRequest extends SinopeRequest {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see ca.tulip.sinope.core.internal.SinopeRequest#getReplyAnswer(java.io.InputStream)
      */
     @Override

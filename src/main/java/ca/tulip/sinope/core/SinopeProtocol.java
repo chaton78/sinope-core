@@ -222,9 +222,10 @@ public class SinopeProtocol {
             logger.info("Successful login");
             while (clientSocket.isConnected()) {
                 System.out.println("It is now time to push both buttons on your device!");
+                System.out.println("Press crtl-c to exit!");
                 SinopeDeviceReportAnswer answ = new SinopeDeviceReportAnswer(clientSocket.getInputStream());
                 logger.debug("Got report answer: %s" + answ);
-
+                System.out.println(String.format("Your device id is: %s", ByteUtil.toString(answ.getDeviceId())));
             }
         }
         clientSocket.close();
@@ -261,7 +262,7 @@ public class SinopeProtocol {
         SinopeAuthenticationKeyAnswer key = (SinopeAuthenticationKeyAnswer) execute(outToServer,
                 clientSocket.getInputStream(), new SinopeAuthenticationKeyRequest(gatewayId));
         logger.info("AuthenticationKey Received");
-        System.out.println("Your api Key is: %s" + ca.tulip.sinope.util.ByteUtil.toString(key.getApiKey()));
+        System.out.println("Your api Key is: %s" + ByteUtil.toString(key.getApiKey()));
         clientSocket.close();
     }
 

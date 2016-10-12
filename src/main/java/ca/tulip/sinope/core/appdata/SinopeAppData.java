@@ -15,7 +15,6 @@ import java.nio.ByteBuffer;
 
 import ca.tulip.sinope.util.ByteUtil;
 
-
 /**
  * The Class SinopeAppData.
  */
