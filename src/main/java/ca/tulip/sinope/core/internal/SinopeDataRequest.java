@@ -148,8 +148,11 @@ public abstract class SinopeDataRequest extends SinopeRequest {
         return appData;
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeFrame#getFrameData()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#getFrameData()
      */
@@ -175,8 +178,11 @@ public abstract class SinopeDataRequest extends SinopeRequest {
 
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeFrame#toString()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#toString()
      */
@@ -198,8 +204,11 @@ public abstract class SinopeDataRequest extends SinopeRequest {
         return sb.toString();
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeRequest#getReplyAnswer(java.io.InputStream)
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeRequest#getReplyAnswer(java.io.InputStream)
      */

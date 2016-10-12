@@ -29,10 +29,15 @@ public abstract class SinopeRequest extends SinopeFrame {
     /** The Constant HEADER_COMMAND_CRC_SIZE. */
     final static protected int HEADER_COMMAND_CRC_SIZE = SinopeFrame.PREAMBLE_SIZE + SinopeFrame.FRAME_CTL_SIZE
             + SinopeFrame.SIZE_SIZE + SinopeFrame.COMMAND_SIZE + SinopeFrame.CRC_SIZE;
+    
+    /** The Constant logger. */
     final static private Logger logger = LoggerFactory.getLogger(SinopeRequest.class);
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeFrame#getPayload()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#getPayload()
      */
@@ -68,6 +73,9 @@ public abstract class SinopeRequest extends SinopeFrame {
      */
     public abstract SinopeAnswer getReplyAnswer(InputStream r) throws IOException;
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeFrame#setInternal_payload(byte[])
+     */
     @Override
     protected void setInternal_payload(byte[] internal_payload) {
         logger.debug("Request Frame: " + ByteUtil.toString(internal_payload));

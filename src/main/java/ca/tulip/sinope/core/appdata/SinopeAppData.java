@@ -105,8 +105,11 @@ public class SinopeAppData {
         return this.data;
     }
 
+    /**
+     * @see java.lang.Object#toString()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see java.lang.Object#toString()
      */

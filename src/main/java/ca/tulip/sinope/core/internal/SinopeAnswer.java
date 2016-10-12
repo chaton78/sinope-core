@@ -27,6 +27,7 @@ import ca.tulip.sinope.util.ByteUtil;
  */
 public abstract class SinopeAnswer extends SinopeRequest {
 
+    /** The Constant logger. */
     final static private Logger logger = LoggerFactory.getLogger(SinopeAnswer.class);
 
     /**
@@ -62,8 +63,11 @@ public abstract class SinopeAnswer extends SinopeRequest {
         this.setInternal_payload(bb.array());
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeRequest#getPayload()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeRequest#getPayload()
      */
@@ -72,8 +76,11 @@ public abstract class SinopeAnswer extends SinopeRequest {
         return getInternal_payload();
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeRequest#getReplyAnswer(java.io.InputStream)
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeRequest#getReplyAnswer(java.io.InputStream)
      */
@@ -82,8 +89,11 @@ public abstract class SinopeAnswer extends SinopeRequest {
         throw new NotSupportedException();
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeFrame#getFrameData()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#getFrameData()
      */
@@ -96,6 +106,9 @@ public abstract class SinopeAnswer extends SinopeRequest {
 
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeRequest#setInternal_payload(byte[])
+     */
     @Override
     protected void setInternal_payload(byte[] internal_payload) {
         logger.debug("Answer  Frame: " + ByteUtil.toString(internal_payload));

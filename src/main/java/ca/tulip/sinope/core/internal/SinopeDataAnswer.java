@@ -59,6 +59,11 @@ public abstract class SinopeDataAnswer extends SinopeAnswer {
 
     }
 
+    /**
+     * Gets the app data.
+     *
+     * @return the app data
+     */
     public SinopeAppData getAppData() {
         return appData;
     }
@@ -127,8 +132,11 @@ public abstract class SinopeDataAnswer extends SinopeAnswer {
         return Arrays.copyOfRange(b, start + 1, end);
     }
 
+    /**
+     * @see ca.tulip.sinope.core.internal.SinopeFrame#toString()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see ca.tulip.sinope.core.internal.SinopeFrame#toString()
      */

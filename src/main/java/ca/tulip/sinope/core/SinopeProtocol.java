@@ -50,8 +50,10 @@ import ch.qos.logback.classic.Level;
  */
 public class SinopeProtocol {
 
+    /** The Constant API_PORT. */
     public static final int API_PORT = 4550;
 
+    /** The Constant logger. */
     final static Logger logger = LoggerFactory.getLogger(SinopeProtocol.class);
     /** The id. */
     @Parameter(names = "-gateway", converter = ByteArrayConverter.class, required = true)
@@ -61,21 +63,27 @@ public class SinopeProtocol {
     @Parameter(names = "-api", converter = ByteArrayConverter.class)
     private byte[] apiKey;
 
+    /** The device id. */
     @Parameter(names = "-device", converter = ByteArrayConverter.class)
     private byte[] deviceId;
 
+    /** The discover. */
     @Parameter(names = "-discover", description = "Execute discover mode to get device id")
     private boolean discover = false;
 
+    /** The demo. */
     @Parameter(names = "-demo", description = "Execute demo mode (requires api and device id)")
     private boolean demo = false;
 
+    /** The login. */
     @Parameter(names = "-login", description = "Get Api Key")
     private boolean login = false;
 
+    /** The addr. */
     @Parameter(names = "-addr", description = "Gateway network ip or hostname", required = true)
     private String addr;
 
+    /** The debug. */
     @Parameter(names = "-debug", description = "Turn on debug")
     private boolean debug = false;
 
@@ -85,9 +93,6 @@ public class SinopeProtocol {
      * @param args the arguments
      * @throws UnknownHostException the unknown host exception
      * @throws IOException Signals that an I/O exception has occurred.
-     * @throws InterruptedException
-     * @throws InstantiationException the instantiation exception
-     * @throws IllegalAccessException the illegal access exception
      */
     public static void main(String[] args) throws UnknownHostException, IOException {
 
@@ -97,6 +102,12 @@ public class SinopeProtocol {
 
     }
 
+    /**
+     * Run.
+     *
+     * @throws UnknownHostException the unknown host exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void run() throws UnknownHostException, IOException {
         if (debug) {
             // Ok to reference logback in the runtime
@@ -117,6 +128,13 @@ public class SinopeProtocol {
         clientSocket.close();
     }
 
+    /**
+     * Demo.
+     *
+     * @param clientSocket the client socket
+     * @throws UnknownHostException the unknown host exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void demo(Socket clientSocket) throws UnknownHostException, IOException {
 
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -166,8 +184,6 @@ public class SinopeProtocol {
      * @return the sinope answer
      * @throws UnknownHostException the unknown host exception
      * @throws IOException Signals that an I/O exception has occurred.
-     * @throws InstantiationException the instantiation exception
-     * @throws IllegalAccessException the illegal access exception
      */
     private static SinopeAnswer execute(DataOutputStream outToServer, InputStream inputStream,
             SinopeDataRequest command) throws UnknownHostException, IOException {
@@ -207,8 +223,7 @@ public class SinopeProtocol {
     /**
      * Discover.
      *
-     * @param clientSocket
-     *
+     * @param clientSocket the client socket
      * @throws UnknownHostException the unknown host exception
      * @throws IOException Signals that an I/O exception has occurred.
      */
@@ -232,6 +247,14 @@ public class SinopeProtocol {
 
     }
 
+    /**
+     * Execute login.
+     *
+     * @param clientSocket the client socket
+     * @return the sinope api login answer
+     * @throws UnknownHostException the unknown host exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private SinopeApiLoginAnswer executeLogin(Socket clientSocket) throws UnknownHostException, IOException {
         executePing(clientSocket);
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -240,6 +263,13 @@ public class SinopeProtocol {
         return login;
     }
 
+    /**
+     * Execute ping.
+     *
+     * @param clientSocket the client socket
+     * @throws UnknownHostException the unknown host exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void executePing(Socket clientSocket) throws UnknownHostException, IOException {
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         logger.info("Ping Request");
@@ -250,6 +280,13 @@ public class SinopeProtocol {
         logger.info("Ping Received");
     }
 
+    /**
+     * Generate api key.
+     *
+     * @param clientSocket the client socket
+     * @throws UnknownHostException the unknown host exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void generateApiKey(Socket clientSocket) throws UnknownHostException, IOException {
 
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());

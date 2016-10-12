@@ -22,6 +22,7 @@ import ca.tulip.sinope.util.CRC8;
  */
 abstract class SinopeFrame {
 
+    /** The Constant logger. */
     final static Logger logger = LoggerFactory.getLogger(SinopeFrame.class);
     /** The Constant PREAMBLE. */
     protected static final byte PREAMBLE = 0x55;
@@ -90,8 +91,11 @@ abstract class SinopeFrame {
         return (byte) (crc8.getValue());
     }
 
+    /**
+     * @see java.lang.Object#toString()
+     */
     /*
-     * (non-Javadoc)
+     * 
      *
      * @see java.lang.Object#toString()
      */

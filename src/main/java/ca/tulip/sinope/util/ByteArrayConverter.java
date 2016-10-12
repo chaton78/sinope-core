@@ -5,8 +5,8 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Initial Creator: Pascal Larin  
+ *
+ * Initial Creator: Pascal Larin
  * https://github.com/chaton78
  */
 package ca.tulip.sinope.util;
@@ -14,7 +14,14 @@ package ca.tulip.sinope.util;
 import com.beust.jcommander.IStringConverter;
 import com.beust.jcommander.ParameterException;
 
+/**
+ * The Class ByteArrayConverter.
+ */
 public class ByteArrayConverter implements IStringConverter<byte[]> {
+
+    /**
+     * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
+     */
     public byte[] convert(String value) {
         value = value.replace("-", "");
         value = value.replace("0x", "");

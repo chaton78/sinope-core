@@ -13,9 +13,15 @@ package ca.tulip.sinope.util;
 
 import java.util.zip.Checksum;
 
+/**
+ * The Class CRC8.
+ */
 public class CRC8 implements Checksum {
 
+    /** The init. */
     private final int init;
+    
+    /** The Constant crcTable. */
     private final static int crcTable[] = { 0x00, 0x07, 0x0e, 0x09, 0x1c, 0x1b, 0x12, 0x15, 0x38, 0x3f, 0x36, 0x31,
             0x24, 0x23, 0x2a, 0x2d, 0x70, 0x77, 0x7e, 0x79, 0x6c, 0x6b, 0x62, 0x65, 0x48, 0x4f, 0x46, 0x41, 0x54, 0x53,
             0x5a, 0x5d, 0xe0, 0xe7, 0xee, 0xe9, 0xfc, 0xfb, 0xf2, 0xf5, 0xd8, 0xdf, 0xd6, 0xd1, 0xc4, 0xc3, 0xca, 0xcd,
@@ -31,12 +37,20 @@ public class CRC8 implements Checksum {
             0x30, 0x37, 0x22, 0x25, 0x2c, 0x2b, 0x06, 0x01, 0x08, 0x0f, 0x1a, 0x1d, 0x14, 0x13, 0xae, 0xa9, 0xa0, 0xa7,
             0xb2, 0xb5, 0xbc, 0xbb, 0x96, 0x91, 0x98, 0x9f, 0x8a, 0x8d, 0x84, 0x83, 0xde, 0xd9, 0xd0, 0xd7, 0xc2, 0xc5,
             0xcc, 0xcb, 0xe6, 0xe1, 0xe8, 0xef, 0xfa, 0xfd, 0xf4, 0xf3 };
+    
+    /** The value. */
     private int value;
 
+    /**
+     * Instantiates a new crc8.
+     */
     public CRC8() {
         this.value = this.init = 0;
     }
 
+    /**
+     * @see java.util.zip.Checksum#update(byte[], int, int)
+     */
     public void update(byte[] buffer, int offset, int len) {
         for (int i = 0; i < len; i++) {
             byte data = buffer[offset + i];
@@ -44,18 +58,32 @@ public class CRC8 implements Checksum {
         }
     }
 
+    /**
+     * Update.
+     *
+     * @param buffer the buffer
+     */
     public void update(byte[] buffer) {
         update(buffer, 0, buffer.length);
     }
 
+    /**
+     * @see java.util.zip.Checksum#update(int)
+     */
     public void update(int b) {
         update(new byte[] { (byte) b }, 0, 1);
     }
 
+    /**
+     * @see java.util.zip.Checksum#getValue()
+     */
     public long getValue() {
         return value & 0xFF;
     }
 
+    /**
+     * @see java.util.zip.Checksum#reset()
+     */
     public void reset() {
         value = init;
     }

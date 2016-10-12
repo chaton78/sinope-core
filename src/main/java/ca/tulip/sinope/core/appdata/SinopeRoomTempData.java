@@ -14,13 +14,24 @@ package ca.tulip.sinope.core.appdata;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+/**
+ * The Class SinopeRoomTempData.
+ */
 public class SinopeRoomTempData extends SinopeAppData {
 
+    /**
+     * Instantiates a new sinope room temp data.
+     */
     public SinopeRoomTempData() {
 
         super(new byte[] { 0x00, 0x00, 0x02, 0x03 }, new byte[] { 0, 0 });
     }
 
+    /**
+     * Gets the room temp.
+     *
+     * @return the room temp
+     */
     public int getRoomTemp() {
         if (getData() != null) {
             ByteBuffer bb = ByteBuffer.wrap(getData());
@@ -30,6 +41,9 @@ public class SinopeRoomTempData extends SinopeAppData {
         return -273;
     }
 
+    /**
+     * @see ca.tulip.sinope.core.appdata.SinopeAppData#toString()
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

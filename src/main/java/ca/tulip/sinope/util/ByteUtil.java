@@ -46,7 +46,7 @@ public class ByteUtil {
     /**
      * To string.
      *
-     * @param byte array to output as string
+     * @param buf the buf
      * @return the string
      */
     public static String toString(byte[] buf) {
