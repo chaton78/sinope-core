@@ -29,7 +29,7 @@ public class SinopeDataReadRequest extends SinopeDataRequest {
      * @param dstDeviceId the dst device id
      * @param appData the app data
      */
-    protected SinopeDataReadRequest(byte[] seq, byte[] dstDeviceId, SinopeAppData appData) {
+    public SinopeDataReadRequest(byte[] seq, byte[] dstDeviceId, SinopeAppData appData) {
         super(seq, dstDeviceId, appData);
         // Read Request, as per spec.. zap data part
         appData.cleanData();
