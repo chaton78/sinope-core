@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Initial Creator: Pascal Larin
+ * @author Pascal Larin
  * https://github.com/chaton78
  */
 package ca.tulip.sinope.core;
@@ -23,9 +23,12 @@ import org.slf4j.LoggerFactory;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
+import ca.tulip.sinope.core.appdata.SinopeHeatLevelData;
 import ca.tulip.sinope.core.appdata.SinopeLocalTimeData;
 import ca.tulip.sinope.core.appdata.SinopeOutTempData;
 import ca.tulip.sinope.core.appdata.SinopeRoomTempData;
+import ca.tulip.sinope.core.appdata.SinopeSetPointModeData;
+import ca.tulip.sinope.core.appdata.SinopeSetPointTempData;
 import ca.tulip.sinope.core.internal.SinopeAnswer;
 import ca.tulip.sinope.core.internal.SinopeDataAnswer;
 import ca.tulip.sinope.core.internal.SinopeDataRequest;
@@ -165,12 +168,53 @@ public class SinopeProtocol {
             answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), req);
             System.out.println(String.format("Outside temp is                   : %2.2f C",
                     (((SinopeOutTempData) answ.getAppData()).getOutTemp() / 100.0)));
+
             System.out.println(String.format("Reading room temp for device id   : %s", ByteUtil.toString(deviceId)));
             req = new SinopeDataReadRequest(new byte[] { 0, 0, 3, 2 }, deviceId, new SinopeRoomTempData());
 
             answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), req);
             System.out.println(String.format("Room temp is                      : %2.2f C",
                     (((SinopeRoomTempData) answ.getAppData()).getRoomTemp() / 100.0)));
+
+            System.out.println(String.format("Reading heat level for device id   : %s", ByteUtil.toString(deviceId)));
+            req = new SinopeDataReadRequest(new byte[] { 0, 0, 3, 2 }, deviceId, new SinopeHeatLevelData());
+
+            answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), req);
+            System.out.println(String.format("Heat level is                      : %d %%",
+                    (((SinopeHeatLevelData) answ.getAppData()).getHeatLevel())));
+
+            System.out
+                    .println(String.format("Reading set point temp for device id   : %s", ByteUtil.toString(deviceId)));
+            req = new SinopeDataReadRequest(new byte[] { 0, 0, 3, 3 }, deviceId, new SinopeSetPointTempData());
+
+            answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), req);
+            System.out.println(String.format("Set Point temp is                      : %2.2f C",
+                    (((SinopeSetPointTempData) answ.getAppData()).getSetPointTemp() / 100.0)));
+
+            System.out
+                    .println(String.format("Setting set point temp for device id   : %s", ByteUtil.toString(deviceId)));
+            SinopeDataWriteRequest writeReq = new SinopeDataWriteRequest(new byte[] { 0, 0, 3, 4 }, deviceId,
+                    answ.getAppData());
+
+            answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), writeReq);
+            System.out.println(String.format("Set Point temp is                      : %2.2f C",
+                    (((SinopeSetPointTempData) answ.getAppData()).getSetPointTemp() / 100.0)));
+
+            System.out
+                    .println(String.format("Reading set point mode for device id   : %s", ByteUtil.toString(deviceId)));
+            req = new SinopeDataReadRequest(new byte[] { 0, 0, 3, 5 }, deviceId, new SinopeSetPointModeData());
+
+            answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), req);
+            System.out.println(String.format("Set Point mode is                      : %d",
+                    (((SinopeSetPointModeData) answ.getAppData()).getSetPointMode())));
+
+            System.out
+                    .println(String.format("Setting set point mode for device id   : %s", ByteUtil.toString(deviceId)));
+            writeReq = new SinopeDataWriteRequest(new byte[] { 0, 0, 3, 6 }, deviceId, answ.getAppData());
+
+            answ = (SinopeDataAnswer) execute(outToServer, clientSocket.getInputStream(), writeReq);
+            System.out.println(String.format("Set Point mode is                      : %d",
+                    (((SinopeSetPointModeData) answ.getAppData()).getSetPointMode())));
         }
 
     }

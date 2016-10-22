@@ -20,7 +20,7 @@ import ca.tulip.sinope.core.internal.SinopeDataRequest;
 /**
  * The Class SinopeDataReadRequest.
  */
-public class SinopeDataReadRequest extends SinopeDataRequest {
+public class SinopeDataWriteRequest extends SinopeDataRequest {
 
     /**
      * Instantiates a new sinope data read request.
@@ -29,10 +29,8 @@ public class SinopeDataReadRequest extends SinopeDataRequest {
      * @param dstDeviceId the dst device id
      * @param appData the app data
      */
-    public SinopeDataReadRequest(byte[] seq, byte[] dstDeviceId, SinopeAppData appData) {
+    public SinopeDataWriteRequest(byte[] seq, byte[] dstDeviceId, SinopeAppData appData) {
         super(seq, dstDeviceId, appData);
-        // Read Request, as per spec.. zap data part
-        appData.cleanData();
     }
 
     /**
@@ -40,7 +38,7 @@ public class SinopeDataReadRequest extends SinopeDataRequest {
      */
     @Override
     protected byte[] getCommand() {
-        return new byte[] { 0x02, 0x40 };
+        return new byte[] { 0x02, 0x44 };
     }
 
     /**

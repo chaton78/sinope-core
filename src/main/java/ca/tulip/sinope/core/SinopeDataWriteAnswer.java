@@ -20,7 +20,7 @@ import ca.tulip.sinope.core.internal.SinopeDataAnswer;
 /**
  * The Class SinopeDataReadAnswer.
  */
-public class SinopeDataReadAnswer extends SinopeDataAnswer {
+public class SinopeDataWriteAnswer extends SinopeDataAnswer {
 
     /**
      * Instantiates a new sinope data read answer.
@@ -29,7 +29,7 @@ public class SinopeDataReadAnswer extends SinopeDataAnswer {
      * @param appData the app data
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public SinopeDataReadAnswer(InputStream r, SinopeAppData appData) throws IOException {
+    public SinopeDataWriteAnswer(InputStream r, SinopeAppData appData) throws IOException {
         super(r, appData);
     }
 
@@ -38,7 +38,7 @@ public class SinopeDataReadAnswer extends SinopeDataAnswer {
      */
     @Override
     protected byte[] getCommand() {
-        return new byte[] { 0x02, 0x41 };
+        return new byte[] { 0x02, 0x45 };
     }
 
 }

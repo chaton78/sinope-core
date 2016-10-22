@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Initial Creator: Pascal Larin
+ * @author Pascal Larin
  * https://github.com/chaton78
  */
 package ca.tulip.sinope.core.appdata;

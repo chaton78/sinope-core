@@ -6,25 +6,22 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * @author Pascal Larin
+ * @author: Pascal Larin
  * https://github.com/chaton78
  */
 package ca.tulip.sinope.core.appdata;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 /**
  * The Class SinopeRoomTempData.
  */
-public class SinopeRoomTempData extends SinopeAppData {
+public class SinopeSetPointModeData extends SinopeAppData {
 
     /**
-     * Instantiates a new sinope room temp data.
+     * Instantiates a new sinope set point temp data.
      */
-    public SinopeRoomTempData() {
+    public SinopeSetPointModeData() {
 
-        super(new byte[] { 0x00, 0x00, 0x02, 0x03 }, new byte[] { 0, 0 });
+        super(new byte[] { 0x00, 0x00, 0x02, 0x11 }, new byte[] { 0 });
     }
 
     /**
@@ -32,13 +29,11 @@ public class SinopeRoomTempData extends SinopeAppData {
      *
      * @return the room temp
      */
-    public int getRoomTemp() {
+    public byte getSetPointMode() {
         if (getData() != null) {
-            ByteBuffer bb = ByteBuffer.wrap(getData());
-            bb.order(ByteOrder.LITTLE_ENDIAN);
-            return bb.getShort();
+            return getData()[0];
         }
-        return -273;
+        return 0;
     }
 
     /**
@@ -49,9 +44,13 @@ public class SinopeRoomTempData extends SinopeAppData {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
         if (getData() != null) {
-            sb.append(String.format("\n\tRoom temperature is %2.2f C", this.getRoomTemp() / 100.0));
+            sb.append(String.format("\nSet point mode is ", this.getSetPointMode()));
         }
         return sb.toString();
+    }
+
+    public void setSetPointMode(byte mode) {
+        getData()[0] = mode;
     }
 
 }
