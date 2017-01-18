@@ -146,7 +146,7 @@ public class SinopeProtocol {
         SinopeApiLoginRequest loginR = new SinopeApiLoginRequest(gatewayId, apiKey);
 
         SinopeApiLoginAnswer login = (SinopeApiLoginAnswer) execute(outToServer, clientSocket.getInputStream(), loginR);
-
+while (true) {
         if (login.getStatus() == 0) {
             System.out.println(
                     String.format("Reading local time for device id  : %s", ByteUtil.toString(login.getDeviceId())));
@@ -216,7 +216,7 @@ public class SinopeProtocol {
             System.out.println(String.format("Set Point mode is                      : %d",
                     (((SinopeSetPointModeData) answ.getAppData()).getSetPointMode())));
         }
-
+}
     }
 
     /**
@@ -343,7 +343,7 @@ public class SinopeProtocol {
         SinopeAuthenticationKeyAnswer key = (SinopeAuthenticationKeyAnswer) execute(outToServer,
                 clientSocket.getInputStream(), new SinopeAuthenticationKeyRequest(gatewayId));
         logger.info("AuthenticationKey Received");
-        System.out.println("Your api Key is: %s" + ByteUtil.toString(key.getApiKey()));
+        System.out.println("Your api Key is: " + ByteUtil.toString(key.getApiKey()));
         clientSocket.close();
     }
 

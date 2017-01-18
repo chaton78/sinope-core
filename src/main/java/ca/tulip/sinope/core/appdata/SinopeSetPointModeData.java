@@ -29,9 +29,9 @@ public class SinopeSetPointModeData extends SinopeAppData {
      *
      * @return the room temp
      */
-    public byte getSetPointMode() {
+    public int getSetPointMode() {
         if (getData() != null) {
-            return getData()[0];
+            return getData()[0] & 0xFF;
         }
         return 0;
     }
